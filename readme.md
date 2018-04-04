@@ -12,6 +12,8 @@ To quickly get started with WordPress , use the template on Azure Marketplace . 
 
 *For running production critical WordPress applications , we recommend to not use Marketplace template but an create an empty web app on App Service and migrate your wordpress app* 
 
+The topic below is focused on setting up Wordpress on **Windows App Service** 
+
 ### Understand database options for WordPress 
 There are different options on what databases to use with WordPress app.
 
@@ -73,7 +75,7 @@ Add the following code in web.config . For more web.config configuration with Wo
 </configuration> 
 ```
 
-Now start developing locally and build your WordPress app
+Now start developing locally and build your WordPress app . Check out WordPress CMS documentation here to start developing your app https://codex.wordpress.org/Getting_Started_with_WordPress 
 
 ## Setup Azure environment
 Create these azure resources needed for your web app at minimum to host WordPress app 
