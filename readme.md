@@ -125,12 +125,20 @@ SMTP is not supported in App Service . Hence you need a Email service such as Se
 
 Use WordPress plugin to enable SMTP with the type of email service you have selected. For example if using Sendgrid , you can choose to use [Sendgrid WordPress plugin](https://wordpress.org/plugins/sendgrid-email-delivery-simplified/) to configure you app and start using Email functionality . Here is another plugin , you can using if using other email provides like Office 365 , Gmail etc  https://wordpress.org/plugins/wp-email-smtp/ 
 
+### Backup your wordpress app
+DO NOT USE Wordpress plugins to backup your web app.  Follow the instructions here on [how to backup you web app](https://docs.microsoft.com/en-us/azure/app-service/web-sites-backup)
+- If you are using MySQL in-app database , the database will also be backed up for your web app 
+- If you are using Azure database for MySQL, use the backup options for this service available to you https://docs.microsoft.com/en-us/azure/mysql/howto-restore-server-cli#set-backup-configuration . In this case, DO NOT USE database back up as part of Web App backup feature. 
+
+*As best practice we recommend to automate backup your wordpress app and database once every day at minimum in case you need to restore the app*
 
 ## Clean up or Deleting web app 
 - Login to Azure Portal. 
 - Check if all the resources (web app , mysql server and database etc. ) are all in the same resource group within the same subscription 
 - Select the resource group and click on DELETE . You will be asked to confirm the delete operation. 
 - If the azure resources are across multiple subscriptions , you would need to manually go to each subscription to clean up and delete the resources.
+
+
 
 
 
