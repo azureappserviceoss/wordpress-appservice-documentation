@@ -107,9 +107,8 @@ Once you have your changes tested locally , its time to deploy the code changes 
 - Add a CNAME record to map your web app endpoint mysite.azurewebsites.net to your custom domain , say example.com 
 - Login to Azure portal and go to your web app . Note your application must be using Standard or Premium Pricing tiers in order to add a domain. If the app is on another pricing tier , please change the pricing tier before moving the next step . 
 - Click on **Custom Domains setting -> Add hostname**
-- Enter the custom domain ,say exmaple.com and click **Validate** 
-
-If the validation is successful , then click OK to complete adding the custom domain to your web app. If the validation is not successfuly , check if your CNAME record is configured correctly. 
+- Enter the custom domain ,say exmaple.com and click **Validate**  . If the validation is successful , then click OK to complete adding the custom domain to your web app. If the validation is not successfuly , check if your CNAME record is configured correctly. 
+- Login to Wordpress admin dashboard. Go to General Settings and update Site URL  as per instructions in this [article](https://codex.wordpress.org/Changing_The_Site_URL) 
 
 ### Add SSL certficate
 - Purchase an SSL certificate for your domain on [Azure](https://docs.microsoft.com/en-us/azure/app-service/web-sites-purchase-ssl-web-site) or elsewhere if you dont have domain validated certificate for your web app. 
