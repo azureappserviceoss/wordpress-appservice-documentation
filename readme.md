@@ -4,7 +4,6 @@ WordPress on App Service can be deployed on either Linux or Windows version of A
 
 [App Service Documentation](https://docs.microsoft.com/en-us/azure/app-service/)
 
-# What to Choose for your WordPress app
 ## What to choose for my WordPress App ? 
 If you are looking to migrate existing or new Wordpress app to Azure and not sure which service to choose as there are many options to do the same. 
 
