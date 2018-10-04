@@ -19,9 +19,11 @@ For smaller sites , your can use plugins such as [All-in-one WP migration](https
 
 ### Import database to Azure MySQL database 
 
-### Add a domain if the app is using a Custom domain 
-
 ### Update URLs in Wordpress database in Azure 
+
+### Add custom domain 
+
+
 
 
 
