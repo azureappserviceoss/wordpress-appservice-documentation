@@ -9,6 +9,28 @@ You can migrate your WordPress app to Windows or Linux App Service web apps. Mig
 For mission-critical Wordpress applications, I recommend using manual migration strategy due to complexities involved in your application needs. 
 For smaller sites , your can use plugins such as [All-in-one WP migration](https://wordpress.org/plugins/all-in-one-wp-migration/) and many other plugins available in Wordpress plugin repository.
 
+## Manual Migration 
+
+### Create a empty web app 
+
+### Create a MySQL database 
+
+#### Deploy Wordpress files to web app
+
+### Import database to Azure MySQL database 
+
+### Add a domain if the app is using a Custom domain 
+
+### Update URLs in Wordpress database in Azure 
+
+
+
+
+
+
+
+
+
 
 
 
