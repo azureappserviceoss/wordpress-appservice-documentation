@@ -1,4 +1,4 @@
-# Hands on Lab 100 - Using Docker Hub + WordPress Application   [ Using Windows Environment ] 
+# Create a WordPress app Using Docker Hub + WordPress Application   [ Local development on Windows Environment ] 
 
 The purpose of this Hands on Lab (HOL) is to have an understanding of how to:
 1. Install Docker Host and Docker CLI tools
