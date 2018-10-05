@@ -19,11 +19,11 @@ The steps below use Azure CLI to perform azure related operations. Please comple
     
     az account set --subscription my-subscription-name 
 
-3. Create a resource group 
+3.Create a resource group 
     
-    	# Use the[az appservice list-locations](https://docs.microsoft.com/en-us/cli/azure/appservice?view=azure-cli-latest#list-locations) Azure CLI command to list available locations. 
-   	 # Create a resource group for web app and database
-   	 az group create --name myResourceGroup --location "West US"    
+    		# Use the[az appservice list-locations](https://docs.microsoft.com/en-us/cli/azure/appservice?view=azure-cli-latest#list-locations) Azure CLI command to list available locations. 
+   		 # Create a resource group for web app and database
+   		 az group create --name myResourceGroup --location "West US"    
    
 ### Create a empty web app 
 
