@@ -23,14 +23,20 @@ There are various options in [Azure] but here are two common Services selectecd 
 | - |Authentication for using various identity providers like Azure AD, Google , Microsoft Account etc |
 | - |Smart diagnostics via App Service Diagnostics avaiable to debug issues|
 
+### Things to Keep in mind 
+- App Service is a platform as a service. We do not update or manage your source code even if the application was created from Azure marketplace using templates such as WordPress, Drupal , Umbraco etc. 
+- Customers are required to keep the version of CMS solutions up to date when they use Wordpress, Drupal and other similar apps. 
+- Customer must follow [best practices for developing on Azure App Services](https://docs.microsoft.com/en-us/azure/app-service/app-service-best-practices?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json)
+- Application must be optimized for App Service due to its distributed architecture. If you want to migrate as-is , we recommend to choose Virtual machines as a solution
 
 ## Basics 
 To quickly get started with WordPress , use the template on Azure Marketplace . Note these templates are not recommended for critical wordpress applications but are great for personal sites using WordPress.
 
 - WordPress on Windows App Service
-- WordPress on Linux App Service
+- WordPress on Web app for Containers
 
 *For running production critical WordPress applications , we recommend to not use Marketplace template but an create an empty web app on App Service and migrate your wordpress app* 
+
 
 ### Understand database options for WordPress 
 There are different options on what databases to use with WordPress app.
@@ -52,42 +58,14 @@ There are different options on what databases to use with WordPress app.
 3. **Azure Mariadb** : Database offering on Azure using MariaDB server instaead of native MySQL servers. For more details see [here](https://azure.microsoft.com/en-us/services/mariadb/)
 4. **MySQL on Azure Virutal machines**  :  You can choose to run and manage your own MySQL server. This is not covered in details in this documentation .  You can reference [this article](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/classic/mysql-2008r2) for more details 
 
-### Add a custom domain
 
-- Purchase a domain on [Azure](https://docs.microsoft.com/en-us/azure/app-service/custom-dns-web-site-buydomains-web-app) or elsewhere if you dont have an existing domain for your app
-- Add a CNAME record to map your web app endpoint mysite.azurewebsites.net to your custom domain , say example.com 
-- Login to Azure portal and go to your web app . Note your application must be using Standard or Premium Pricing tiers in order to add a domain. If the app is on another pricing tier , please change the pricing tier before moving the next step . 
-- Click on **Custom Domains setting -> Add hostname**
-- Enter the custom domain ,say exmaple.com and click **Validate**  . If the validation is successful , then click OK to complete adding the custom domain to your web app. If the validation is not successfuly , check if your CNAME record is configured correctly. 
-- Login to Wordpress admin dashboard. Go to General Settings and update Site URL  as per instructions in this [article](https://codex.wordpress.org/Changing_The_Site_URL) 
-
-### Add SSL certficate
-- Purchase an SSL certificate for your domain on [Azure](https://docs.microsoft.com/en-us/azure/app-service/web-sites-purchase-ssl-web-site) or elsewhere if you dont have domain validated certificate for your web app. 
-- Login to Azure portal and go to your web app. Note your application must be using Standard or Premium Pricing tiers in order to add a domain. If the app is on another pricing tier , please change the pricing tier before moving the next step .
-- Click on **SSL bindings-> Add binding**
-- Upload a certificate as shown in [this article] if you are bringing your own certificate(https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-ssl#bind-your-ssl-certificate#upload-your-ssl-certificate)
-- If you are using an App Service certiifcate , then import your certificate as shown in [this article](https://blogs.msdn.microsoft.com/benjaminperkins/2017/04/12/how-i-configured-an-app-service-certificate-for-my-azure-app-service/)
+### Follow the links based on your needs on next steps
+- [Create a WordPress app on Web app for Containers](./create-wordpress-on-web-apppp-for-containers.md)
+- [Create a WordPress app on Web app on Windows App Service](./create-wordpress-on-web-app-on-windows.md)
+- [Create WordPress app using Multi-COntainers on Web app for Containers](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-multi-container-app)
+- [Migrate WordPress app to Azure] (./migrate-wordpress-windows-app-service.md)
 
 
-You can enforce HTTPS for your web app without chanigng web.config  , [learn more here](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-ssl#enforce-https)
-
-### Enable Email 
-SMTP is not supported in App Service . Hence you need a Email service such as Sendgrid to be confugured with your web app. Find various email services listed here in Azure marketpalce : https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=email  
-
-Use WordPress plugin to enable SMTP with the type of email service you have selected. For example if using Sendgrid , you can choose to use [Sendgrid WordPress plugin](https://wordpress.org/plugins/sendgrid-email-delivery-simplified/) to configure you app and start using Email functionality . Here is another plugin , you can using if using other email provides like Office 365 , Gmail etc  https://wordpress.org/plugins/wp-email-smtp/ 
-
-### Backup your wordpress app
-DO NOT USE Wordpress plugins to backup your web app.  Follow the instructions here on [how to backup you web app](https://docs.microsoft.com/en-us/azure/app-service/web-sites-backup)
-- If you are using MySQL in-app database , the database will also be backed up for your web app 
-- If you are using Azure database for MySQL, use the backup options for this service available to you https://docs.microsoft.com/en-us/azure/mysql/howto-restore-server-cli#set-backup-configuration . In this case, DO NOT USE database back up as part of Web App backup feature. 
-
-*As best practice we recommend to automate backup your wordpress app and database once every day at minimum in case you need to restore the app*
-
-## Clean up or Deleting web app 
-- Login to Azure Portal. 
-- Check if all the resources (web app , mysql server and database etc. ) are all in the same resource group within the same subscription 
-- Select the resource group and click on DELETE . You will be asked to confirm the delete operation. 
-- If the azure resources are across multiple subscriptions , you would need to manually go to each subscription to clean up and delete the resources.
 
 
 
