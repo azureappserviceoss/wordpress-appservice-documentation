@@ -80,10 +80,45 @@ Wordpress stores URLs in the database. If you existing database has URLs with cu
 ### Performance 
 Browse your app and test the performance of your app. If page load time does not satisfy your needs , you may add an Azure Redis Service , Azure CDN service and optimize your plugins/code to improve the performance. If you dont want to add these options , I recommend to move the app to Azure Virtual machine instead of App Service. See [What service to choose for WordPress](https://raw.githubusercontent.com/azureappserviceoss/wordpress-appservice-documentation/master/what-to-choose.md)
 
-### Add custom domain 
-Once you have the app running successfuly and ready to go live , add the custom domain to Azure web app. See [how to add a domain to web app ](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain)
+### Add a custom domain
+
+- Purchase a domain on [Azure](https://docs.microsoft.com/en-us/azure/app-service/custom-dns-web-site-buydomains-web-app) or elsewhere if you dont have an existing domain for your app
+- Add a CNAME record to map your web app endpoint mysite.azurewebsites.net to your custom domain , say example.com 
+- Login to Azure portal and go to your web app . Note your application must be using Standard or Premium Pricing tiers in order to add a domain. If the app is on another pricing tier , please change the pricing tier before moving the next step . 
+- Click on **Custom Domains setting -> Add hostname**
+- Enter the custom domain ,say exmaple.com and click **Validate**  . If the validation is successful , then click OK to complete adding the custom domain to your web app. If the validation is not successfuly , check if your CNAME record is configured correctly. 
+- Login to Wordpress admin dashboard. Go to General Settings and update Site URL  as per instructions in this [article](https://codex.wordpress.org/Changing_The_Site_URL) 
 
 
+
+
+### Add SSL certficate
+- Purchase an SSL certificate for your domain on [Azure](https://docs.microsoft.com/en-us/azure/app-service/web-sites-purchase-ssl-web-site) or elsewhere if you dont have domain validated certificate for your web app. 
+- Login to Azure portal and go to your web app. Note your application must be using Standard or Premium Pricing tiers in order to add a domain. If the app is on another pricing tier , please change the pricing tier before moving the next step .
+- Click on **SSL bindings-> Add binding**
+- Upload a certificate as shown in [this article] if you are bringing your own certificate(https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-ssl#bind-your-ssl-certificate#upload-your-ssl-certificate)
+- If you are using an App Service certiifcate , then import your certificate as shown in [this article](https://blogs.msdn.microsoft.com/benjaminperkins/2017/04/12/how-i-configured-an-app-service-certificate-for-my-azure-app-service/)
+
+
+You can enforce HTTPS for your web app without chanigng web.config  , [learn more here](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-ssl#enforce-https)
+
+### Enable Email 
+SMTP is not supported in App Service . Hence you need a Email service such as Sendgrid to be confugured with your web app. Find various email services listed here in Azure marketpalce : https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=email  
+
+Use WordPress plugin to enable SMTP with the type of email service you have selected. For example if using Sendgrid , you can choose to use [Sendgrid WordPress plugin](https://wordpress.org/plugins/sendgrid-email-delivery-simplified/) to configure you app and start using Email functionality . Here is another plugin , you can using if using other email provides like Office 365 , Gmail etc  https://wordpress.org/plugins/wp-email-smtp/ 
+
+### Backup your wordpress app
+DO NOT USE Wordpress plugins to backup your web app.  Follow the instructions here on [how to backup you web app](https://docs.microsoft.com/en-us/azure/app-service/web-sites-backup)
+- If you are using MySQL in-app database , the database will also be backed up for your web app 
+- If you are using Azure database for MySQL, use the backup options for this service available to you https://docs.microsoft.com/en-us/azure/mysql/howto-restore-server-cli#set-backup-configuration . In this case, DO NOT USE database back up as part of Web App backup feature. 
+
+*As best practice we recommend to automate backup your wordpress app and database once every day at minimum in case you need to restore the app*
+
+## Clean up or Deleting web app 
+- Login to Azure Portal. 
+- Check if all the resources (web app , mysql server and database etc. ) are all in the same resource group within the same subscription 
+- Select the resource group and click on DELETE . You will be asked to confirm the delete operation. 
+- If the azure resources are across multiple subscriptions , you would need to manually go to each subscription to clean up and delete the resources.
 
 
 
