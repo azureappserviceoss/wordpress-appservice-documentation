@@ -23,7 +23,7 @@ There are various options in [Azure] but here are two common Services selectecd 
 | - |Authentication for using various identity providers like Azure AD, Google , Microsoft Account etc |
 | - |Smart diagnostics via App Service Diagnostics avaiable to debug issues|
 
-### Things to Keep in mind 
+## Things to Keep in mind 
 - App Service is a platform as a service. We do not update or manage your source code even if the application was created from Azure marketplace using templates such as WordPress, Drupal , Umbraco etc. 
 - Customers are required to keep the version of CMS solutions up to date when they use Wordpress, Drupal and other similar apps. 
 - Customer must follow [best practices for developing on Azure App Services](https://docs.microsoft.com/en-us/azure/app-service/app-service-best-practices?toc=%2fazure%2fapp-service%2fcontainers%2ftoc.json)
@@ -38,7 +38,7 @@ To quickly get started with WordPress , use the template on Azure Marketplace . 
 *For running production critical WordPress applications , we recommend to not use Marketplace template but an create an empty web app on App Service and migrate your wordpress app* 
 
 
-### Understand database options for WordPress 
+## Understand database options for WordPress 
 There are different options on what databases to use with WordPress app.
 
 1. **MySQL in-app** : MySQL in-app feature enables running MySql natively on Azure App Service platform. This is recommemded if you have a 
@@ -59,7 +59,7 @@ There are different options on what databases to use with WordPress app.
 4. **MySQL on Azure Virutal machines**  :  You can choose to run and manage your own MySQL server. This is not covered in details in this documentation .  You can reference [this article](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/classic/mysql-2008r2) for more details 
 
 
-### Follow the links based on your needs on next steps
+## Follow the links based on your needs on next steps
 - [Create a WordPress app on Web app for Containers](./create-wordpress-on-web-apppp-for-containers.md)
 - [Create a WordPress app on Web app on Windows App Service](./create-wordpress-on-web-app-on-windows.md)
 - [Create WordPress app using Multi-COntainers on Web app for Containers](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-multi-container-app)
