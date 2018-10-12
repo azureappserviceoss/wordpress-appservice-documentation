@@ -67,6 +67,17 @@ There are different options on what databases to use with WordPress app.
 - [Migrate WordPress app to Azure](./migrate-wordpress-windows-app-service.md)
 
 
+#### Performance
+
+Performance in the cloud is achieved primarily through caching and scale out; however the memory, bandwidth, and other attributes of Web Apps hosting should also be taken into consideration.
+
+To do this... | Use this...
+------------------------|-----------
+**Cache resources** | Server level caching and/or [Azure Redis cache](https://azure.microsoft.com/en-us/services/cache/)
+**Scale your application** | [Scale a web app in Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/web-sites-scale) 
+**Scale up your database** | [Scale Azure database for MySQL](https://docs.microsoft.com/en-us/azure/mysql/concepts-pricing-tiers)
+**Optimize your code** | Remove unused plugins , profile your app to identify plugins or themes impacting the performance of your app by making too many calls to the database 
+**Cache Images** | Use a Azure CDN or server level caching to cache statis content 
 
 
 
