@@ -32,15 +32,13 @@ To quickly get started with WordPress , use the template on Azure Marketplace . 
 
 *For running production critical WordPress applications , we recommend to not use Marketplace template but an create an empty web app on App Service and migrate your wordpress app* 
 
-**The instructions below is focused on setting up Wordpress on Windows App Service** 
-
 ### Understand database options for WordPress 
 There are different options on what databases to use with WordPress app.
 
-1. MySQL in-app : MySQL in-app feature enables running MySql natively on Azure App Service platform. This is recommemded if you have a 
+1. **MySQL in-app** : MySQL in-app feature enables running MySql natively on Azure App Service platform. This is recommemded if you have a 
     - mostly read only site 
     - need only single instance app service plan 
-    - using Windows App Service 
+    - supports Windows App Service ONLY
 
      #### Limitations
     - MySQL currently runs on on a single instance .
@@ -50,76 +48,9 @@ There are different options on what databases to use with WordPress app.
 
     For more details on MySQL in-app feature click [here](https://blogs.msdn.microsoft.com/appserviceteam/2016/08/18/announcing-mysql-in-app-preview-for-web-apps/)
 
-2. Azure database for MySQL :  Azure Database for MySQL is a relational database service based on the open source MySQL Server engine. It is a fully managed database as a service offering capable of handing mission-critical workload with predictable performance and dynamic scalability. For more details on Azure database for MySQL [click here](https://docs.microsoft.com/en-us/azure/mysql/)
-3. MySQL on Azure Virutal machines  :  You can choose to run and manage your own MySQL server. This is not covered in details in this documentation .  You can reference [this article](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/classic/mysql-2008r2) for more details 
-
-## Create Local development Environment 
-1. Download latest WordPress code from https://wordpress.org 
-2. Setup you WordPress environment on IIS web server using the following documentation https://codex.wordpress.org/Installing_on_Microsoft_IIS 
-3. Use the sample script below in wp-config.php file to make it easy to switch from local and Azure enviroment wihtout changing the code manually everytime . 
-```
-//Get the Environment variable AZURE_ENV = true/false if its exists .This variable will be configured in Azure portal for your web app  
-$onAzure = getenv ('AZURE_ENV');
-if ($appEnv) {
-    / Production environment */
-    define('DB_HOST', ':/cloudsql/[YOUR_PROJECT_ID]:us-central1:tutorial-sql-instance');
-    / The name of the database for WordPress /
-    define('DB_NAME', 'tutorialdb');
-    / MySQL database username */
-    define('DB_USER', 'tutorial-user');
-    / MySQL database password /
-    define('DB_PASSWORD', 'YOUR_DATABASE_USER_PASSWORD');
-} else {
-    / Local environment */
-    define('DB_HOST', 'localhost');
-    / The name of the database for WordPress /
-    define('DB_NAME', 'my-local-db');
-    / MySQL database username */
-    define('DB_USER', 'my-local-db-user');
-    / MySQL database password /
-    define('DB_PASSWORD', 'YOUR_DATABASE_USER_PASSWORD');
-}
-```
-3. Create a web.config and place it under your site root folder. IIS web server does not recognize .htaccess files and you can use web.config file to manage the server configurations such as URL rewrite rules , caching etc . 
-Add the following code in web.config . For more web.config configuration with WordPress , click [here](./webconfig-samples.md) to see options on how to use PHP caching, IP restrictions etc. 
-
-```
-<?xmlversion="1.0"encoding="UTF-8"?>
-<configuration>
-    <system.webServer>
-        <staticContent>
-            <mimeMap fileExtension="woff" mimeType="application/font-woff" />
-            <mimeMap fileExtension="woff2" mimeType="application/font-woff" /> 
-         </staticContent>
-    </system.webServer>
-</configuration> 
-```
-
-Now start developing locally and build your WordPress app . Check out WordPress CMS documentation here to start developing your app https://codex.wordpress.org/Getting_Started_with_WordPress 
-
-## Setup Azure environment
-Create these azure resources needed for your web app at minimum to host WordPress app 
- 
-1. Login to [Azure portal](https://portal.azure.com)
-2. Create an Empty Web App + MySQL database.[Click here](https://portal.azure.com/#create/Microsoft.WebSiteMySQLDatabase). 
-   *For personal sites , you can use [WordPress template](http://portal.azure.com/#create/wordpress.wordpress) in Azure portal*
-3. Select your web app and add application setting ```AZURE_ENV=true```. For more details on Application Settings , click [here](https://docs.microsoft.com/en-us/azure/app-service/web-sites-configure#application-settings)
-
-### Deploy your code 
-
-We recommend to deploy your code to staging slot as a best practice rather than to primary web app. [Learn how to create a slot here](https://docs.microsoft.com/en-us/azure/app-service/web-sites-staged-publishing#add-a-deployment-slot).    
-
-You can use the following to deploy to code tp a slot or main web app 
-1. [FTP](https://docs.microsoft.com/en-us/azure/app-service/app-service-deploy-ftp)
-2. [Local GIT](https://docs.microsoft.com/en-us/azure/app-service/app-service-deploy-local-git) 
-3. [Github](https://docs.microsoft.com/en-us/azure/app-service/app-service-continuous-deployment) : You can push your application code to Github repository . Configure Github repository as discused in [this article](https://docs.microsoft.com/en-us/azure/app-service/app-service-continuous-deployment)
-
-  #### Push updates to WordPress code 
-Once you have your changes tested locally , its time to deploy the code changes to your web app . Push the app code changes to stage slot [recommended] or primary web app by using :
-
-1. [FTP](https://docs.microsoft.com/en-us/azure/app-service/app-service-deploy-ftp)
-2. [Local GIT](https://docs.microsoft.com/en-us/azure/app-service/app-service-deploy-local-git)  : If local git is configured , push the changes using git to the stage slot or primary web app 
-3. [Github](https://docs.microsoft.com/en-us/azure/app-service/app-service-continuous-deployment) : If continuous integration is enabled , then once the changes are pushed to Github repository they will be synced to your stage slot or priamry web app based on your configuration. 
+2. **Azure database for MySQL**:  Azure Database for MySQL is a relational database service based on the open source MySQL Server engine. It is a fully managed database as a service offering capable of handing mission-critical workload with predictable performance and dynamic scalability. For more details on Azure database for MySQL [click here](https://docs.microsoft.com/en-us/azure/mysql/)
+3. **Azure Mariadb** : Database offering on Azure using MariaDB server instaead of native MySQL servers. For more details see [here](https://azure.microsoft.com/en-us/services/mariadb/)
+4. **MySQL on Azure Virutal machines**  :  You can choose to run and manage your own MySQL server. This is not covered in details in this documentation .  You can reference [this article](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/classic/mysql-2008r2) for more details 
 
 ### Add a custom domain
 
