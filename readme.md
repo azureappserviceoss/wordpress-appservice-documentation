@@ -64,7 +64,7 @@ There are different options on what databases to use with WordPress app.
 - [Create a WordPress app on Web app for Containers](./create-wordpress-on-web-apppp-for-containers.md)
 - [Create a WordPress app on Web app on Windows App Service](./create-wordpress-on-web-app-on-windows.md)
 - [Create WordPress app using Multi-Containers on Web app for Containers](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-multi-container-app)
-- [Migrate WordPress app to Azure] (./migrate-wordpress-windows-app-service.md)
+- [Migrate WordPress app to Azure](./migrate-wordpress-windows-app-service.md)
 
 
 
