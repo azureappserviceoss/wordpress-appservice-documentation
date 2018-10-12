@@ -37,6 +37,7 @@ To quickly get started with WordPress , use the template on Azure Marketplace . 
 
 *For running production critical WordPress applications , we recommend to not use Marketplace template but an create an empty web app on App Service and migrate your wordpress app* 
 
+[Compare WordPress solution on Windows App Service , Linux App Service and Web app for Containers] (https://blogs.msdn.microsoft.com/appserviceteam/2017/09/12/how-to-for-wordpress-on-app-service-windowslinux/)
 
 ## Understand database options for WordPress 
 There are different options on what databases to use with WordPress app.
@@ -62,7 +63,7 @@ There are different options on what databases to use with WordPress app.
 ## Follow the links based on your needs on next steps
 - [Create a WordPress app on Web app for Containers](./create-wordpress-on-web-apppp-for-containers.md)
 - [Create a WordPress app on Web app on Windows App Service](./create-wordpress-on-web-app-on-windows.md)
-- [Create WordPress app using Multi-COntainers on Web app for Containers](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-multi-container-app)
+- [Create WordPress app using Multi-Containers on Web app for Containers](https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-multi-container-app)
 - [Migrate WordPress app to Azure] (./migrate-wordpress-windows-app-service.md)
 
 
